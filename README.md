@@ -41,16 +41,28 @@ The experimental design separated training, validation, and testing to reduce da
 
 ## Selected Research Findings
 
-The findings showed that selecting models and decision thresholds based on operational cost can provide a different perspective from evaluating classification metrics alone.
+The Random Forest model incorporating Isolation Forest and
+Autoencoder anomaly features achieved the lowest weighted
+classification cost among the evaluated configurations.
+
+The operating threshold (t*) was selected using validation
+data to minimize the weighted cost of false positives and
+false negatives.
 
 | Research Finding | Result |
 |---|---|
-| Lowest observed cost | 590 abstract cost units |
-| Best-performing cost configuration | Random Forest + Isolation Forest + Autoencoder |
-| Recall for this configuration | 88.8% |
-| Precision for this configuration | 68.5% |
+| Best-performing configuration | Random Forest + Isolation Forest + Autoencoder |
+| Weighted cost at t* | 590 cost units |
+| Precision at t* | 68.5% |
+| Recall at t* | 88.8% |
+| PR-AUC | 0.847 |
 | SHAP top-10 feature overlap | 90% |
-| SHAP rank correlation | 0.9633 |
+| SHAP Spearman rank correlation | 0.9633 |
+
+**Cost policy:** False positives were assigned a weight of 1,
+while false negatives were assigned a weight of 50.
+The resulting cost values represent comparative penalties,
+not actual financial losses.
 
 ### Cost-Aware Fraud Detection
 
