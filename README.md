@@ -55,7 +55,7 @@ false negatives.
 | Weighted cost at t* | 590 cost units |
 | Precision at t* | 68.5% |
 | Recall at t* | 88.8% |
-| PR-AUC | 0.847 |
+| PR-AUC (winning RF model) | 0.847 |
 | SHAP top-10 feature overlap | 90% |
 | SHAP Spearman rank correlation | 0.9633 |
 
@@ -63,6 +63,15 @@ false negatives.
 while false negatives were assigned a weight of 50.
 The resulting cost values represent comparative penalties,
 not actual financial losses.
+
+### Model Cost Comparison
+
+![Weighted model cost comparison](results/figures/bars_cost_who_wins.png)
+
+**Model cost comparison.** The Random Forest model with
+Isolation Forest and Autoencoder features achieved the
+lowest weighted classification cost of 590 under the
+study's 1:50 cost policy.
 
 ### Cost-Aware Fraud Detection
 
@@ -75,6 +84,18 @@ Rather than relying on a default decision threshold, the research evaluated the 
 Combining supervised machine learning with anomaly signals from Isolation Forest and an Autoencoder improved cost efficiency in the tested configurations.
 
 The Random Forest configuration incorporating both anomaly features achieved the lowest observed cost in the reported experiments.
+
+### Precision–Recall Performance
+
+![XGBoost anomaly-feature fusion precision-recall curve](results/figures/prcurve_XGBoost_PLUS_IF_AE.png)
+
+**Figure 12.** Precision–Recall curve for XGBoost with
+Isolation Forest and Autoencoder features, showing an
+average precision of approximately 0.84.
+
+The Random Forest anomaly-fusion configuration achieved
+the lowest weighted cost, while this figure illustrates
+the precision-recall performance of the XGBoost hybrid.
 
 ### Synthetic Data Augmentation
 
@@ -89,6 +110,15 @@ SHAP was used to examine feature contributions and compare explanations generate
 The analysis showed strong agreement in feature-importance rankings, including a 90% overlap among the top ten features and a Spearman rank correlation of approximately 0.96.
 
 These findings support explainability comparisons as one component of evaluating synthetic data. However, explanation similarity alone does not establish model reliability or privacy protection.
+
+### SHAP Explainability Comparison
+
+![SHAP top-10 feature overlap](results/figures/shap_parity_overlaps.png)
+
+**SHAP parity.** The real and synthetic validation
+datasets showed 90% overlap among their top ten
+SHAP-ranked features, with a Spearman rank correlation
+of 0.9633.
 
 ## Research Implementation
 
